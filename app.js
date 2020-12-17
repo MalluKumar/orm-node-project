@@ -12,15 +12,25 @@ const { Movie } = db.models; // same as const Movie = db.models.Movie
         await db.sequelize.sync({ force: true }); //force:true drops table if exists and create new table every time.
 
         // Instance of Movie class
-        await Movie.create({
-            title: "KGF"
+        const movie1 = await Movie.create({
+            title: "KGF",
+            runtime: 80,
+            releaseDate: "2020-09-12",
+            isAvailableOnVHS: true
         });
 
-        await Movie.create({
-            title: "MK"
+        const movie2 = await Movie.create({
+            title: "KF",
+            runtime: 50,
+            releaseDate: "2020-09-23",
+            isAvailableOnVHS: true
         });
+
+        console.log(movie1.toJSON());
+        console.log(movie2.toJSON());
 
     } catch (err) {
         console.error("Error connecting to the database", err);
     }
+
 })();

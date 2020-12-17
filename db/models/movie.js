@@ -5,7 +5,13 @@ module.exports = (sequelize) => {
     class Movie extends Sequelize.Model { }
 
     // intializing the model and define columns for the table.
-    Movie.init({ title: Sequelize.STRING }, { sequelize }); // same as {sequelize : sequelize}
+    Movie.init({
+        id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+        title: { type: Sequelize.STRING, allowNull: false }, // to not insert 'null' keyword for empty fields.
+        runtime: { type: Sequelize.INTEGER, allowNull: false },
+        releaseDate: { type: Sequelize.DATEONLY, allowNull: false },
+        isAvailableOnVHS: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
+    }, { sequelize }); // same as {sequelize : sequelize}
 
     return Movie;
 };
