@@ -1,4 +1,5 @@
 const db = require('./db');
+const movie = require('./db/models/movie');
 const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
 
 // async IIFE (immediately invoked function expression)
@@ -39,7 +40,29 @@ const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
         console.log(person1.toJSON());
         console.log(movie1.toJSON());
         console.log(movie2.toJSON());
-        
+
+        // retrieve or get data from database.
+        const data1 = await Person.findByPk(1);   // with particular id.
+
+        console.log(data1.toJSON());
+
+        const data2 = await Movie.findOne();      // return one movie record.
+
+        console.log(data2.toJSON());
+
+        const data3 = await Movie.findOne({ where: { title: "KF" } });  // matches the condition.
+
+        console.log(data3.toJSON());
+
+        const allMovies = await Movie.findAll(); // to get all movies.
+
+        console.log(allMovies.map(movie => movie.toJSON()));
+
+        // to get only certain columns values
+        const allMovies1 = await Movie.findAll({ attributes: ['id', 'title'], where: { isAvailableOnVHS: true }, order: [['id', 'DESC']] }); // ordering data in asc or desc
+
+        console.log(allMovies1.map(movie => movie.toJSON()));
+
     } catch (error) {
         if (error.name === "SequelizeValidationError") {
             const errors = error.errors.map(err => err.message);
