@@ -1,5 +1,5 @@
 const db = require('./db');
-const { Movie } = db.models; // same as const Movie = db.models.Movie
+const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
 
 // async IIFE (immediately invoked function expression)
 (async () => {
@@ -26,6 +26,13 @@ const { Movie } = db.models; // same as const Movie = db.models.Movie
             isAvailableOnVHS: true
         });
 
+        // Instance of Person class
+        const person1 = await Person.create({
+            firstName: 'Sweety',
+            lastName: 'Punya',
+        });
+
+        console.log(person1.toJSON());
         console.log(movie1.toJSON());
         console.log(movie2.toJSON());
 

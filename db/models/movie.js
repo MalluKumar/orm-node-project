@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
     }, {
         modelName: "movie", // set table or model name to movie.
         sequelize
-    }); 
+    });
 
     return Movie;
 };
