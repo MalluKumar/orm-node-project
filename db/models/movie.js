@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
         runtime: { type: Sequelize.INTEGER, allowNull: false, validate: { notNull: { msg: "Please enter value." }, min: { args: 1, msg: "Provide a value greater than zero." } } },
         releaseDate: { type: Sequelize.DATEONLY, allowNull: false, validate: { notNull: { msg: "Enter a value." }, isAfter: { args: '1895-12-27', msg: "Provide a value after 1895-12-27" } } },
         isAvailableOnVHS: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
-    }, { sequelize }); // same as {sequelize : sequelize}
+    }, {
+        modelName: "movie", // set table or model name to movie.
+        sequelize
+    }); 
 
     return Movie;
 };
