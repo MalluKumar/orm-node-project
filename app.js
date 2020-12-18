@@ -26,7 +26,6 @@ const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
             releaseDate: "2020-08-20"
         });
 
-        // 
         const movie2 = await Movie.build({ // creating new record using 'build' method (Note: call save() method).
             title: "KF",
             runtime: 50,
