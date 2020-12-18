@@ -20,6 +20,12 @@ const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
             isAvailableOnVHS: true
         });
 
+        const movie3 = await Movie.create({ // creating new record using 'create' method.
+            title: "MM",
+            runtime: 120,
+            releaseDate: "2020-08-20"
+        });
+
         // 
         const movie2 = await Movie.build({ // creating new record using 'build' method (Note: call save() method).
             title: "KF",
@@ -62,6 +68,14 @@ const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
         const allMovies1 = await Movie.findAll({ attributes: ['id', 'title'], where: { isAvailableOnVHS: true }, order: [['id', 'DESC']] }); // ordering data in asc or desc
 
         console.log(allMovies1.map(movie => movie.toJSON()));
+
+        // To update records in database 
+        const update1 = await Movie.findByPk(2);  // first method to update (dot notation)
+        update1.isAvailableOnVHS = true;
+        await update1.save();
+
+        const update2 = await Movie.findByPk(3);
+        await update2.update({ isAvailableOnVHS: false });  // second method to update using 'update' function
 
     } catch (error) {
         if (error.name === "SequelizeValidationError") {
