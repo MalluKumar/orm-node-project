@@ -6,8 +6,8 @@ const sequelize = new Sequelize({
     storage: "movies.db",
     // logging: false to disable logging SQL queries onto the console.
     define: {
-        freezeTableName: true, // disable default plural table names.
-        timestamps: false, // same as {sequelize : sequelize} and remove timestamps.
+        freezeTableName: true // disable default plural table names.
+        // timestamps: false,  remove default timestamps.
     }
 });
 

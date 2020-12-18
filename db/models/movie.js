@@ -24,6 +24,7 @@ module.exports = (sequelize) => {
         isAvailableOnVHS: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
     }, {
         modelName: "movie", // set table or model name to movie.
+        paranoid: true,      // to enable soft deletes.
         sequelize
     });
 

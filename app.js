@@ -77,6 +77,10 @@ const { Movie, Person } = db.models; // same as const Movie = db.models.Movie
         const update2 = await Movie.findByPk(3);
         await update2.update({ isAvailableOnVHS: false });  // second method to update using 'update' function
 
+        // To delete a record
+        const delete1 = await Movie.findByPk(3);
+        await delete1.destroy();
+
     } catch (error) {
         if (error.name === "SequelizeValidationError") {
             const errors = error.errors.map(err => err.message);
